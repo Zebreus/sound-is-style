@@ -1,17 +1,23 @@
 import { css } from "@emotion/react"
-import { useToggle } from "hooks/useToggle"
+import { increment, setDoc } from "firebase/firestore"
+import { getTestRef } from "hooks/firestore/getRefs"
+import { useTest } from "hooks/firestore/simple/useTest"
 
 export const Demo = () => {
-  const [state, toggle] = useToggle()
+  const test = useTest("alpha")
+
+  const mynum = test?.id ?? 0
 
   return (
     <button
-      onClick={toggle}
+      onClick={() => {
+        setDoc(getTestRef("alpha"), { id: increment(1) }, { merge: true })
+      }}
       css={css`
-        background-color: ${state ? "red" : "blue"};
+        background-color: ${mynum % 2 === 0 ? "red" : "blue"};
       `}
     >
-      Click to toggle color
+      Click to increment the current number {mynum}
     </button>
   )
 }
