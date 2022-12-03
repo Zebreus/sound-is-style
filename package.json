@@ -1,0 +1,15 @@
+{
+  "name": "sound-is-style",
+  "version": "0.0.0",
+  "description": "Your sound is your style!",
+  "author": {
+    "name": "Zebreus",
+    "email": "lennarteichhorn@googlemail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zebreus/sound-is-style"
+  },
+  "license": "MIT",
+  "type": "module"
+}
