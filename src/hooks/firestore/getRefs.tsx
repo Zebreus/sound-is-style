@@ -1,6 +1,7 @@
 import { collection, doc, DocumentData, DocumentReference, getFirestore } from "firebase/firestore"
 import { genericConverter, WithRef } from "hooks/firestore/FirestoreDocument"
-import { Test } from "types/test"
+import { Outfit } from "types/outfit"
+import { SpotifyUser } from "types/user"
 
 function getConvertedCollection<T extends DocumentData>(path: string) {
   const ref = collection(getFirestore(), path)
@@ -13,13 +14,25 @@ function getConvertedDocument<T extends DocumentData>(path: string) {
 }
 
 // ts-prune-ignore-next
-export function getTestsRef() {
-  return getConvertedCollection<Test>(`tests`)
+export function getUsersRef() {
+  return getConvertedCollection<SpotifyUser>(`users`)
 }
 
 // ts-prune-ignore-next
-export function getTestRef(testId: string): DocumentReference<WithRef<Test>>
-export function getTestRef(testId: string | undefined): undefined | DocumentReference<WithRef<Test>>
-export function getTestRef(testId: string | undefined): undefined | DocumentReference<WithRef<Test>> {
-  return testId ? getConvertedDocument<Test>(`tests/${testId}`) : undefined
+export function getUserRef(userId: string): DocumentReference<WithRef<SpotifyUser>>
+export function getUserRef(userId: string | undefined): undefined | DocumentReference<WithRef<SpotifyUser>>
+export function getUserRef(userId: string | undefined): undefined | DocumentReference<WithRef<SpotifyUser>> {
+  return userId ? getConvertedDocument<SpotifyUser>(`users/${userId}`) : undefined
+}
+
+// ts-prune-ignore-next
+export function getOutfitsRef() {
+  return getConvertedCollection<Outfit>(`outfits`)
+}
+
+// ts-prune-ignore-next
+export function getOutfitRef(outfitId: string): DocumentReference<WithRef<Outfit>>
+export function getOutfitRef(outfitId: string | undefined): undefined | DocumentReference<WithRef<Outfit>>
+export function getOutfitRef(outfitId: string | undefined): undefined | DocumentReference<WithRef<Outfit>> {
+  return outfitId ? getConvertedDocument<Outfit>(`outfits/${outfitId}`) : undefined
 }
