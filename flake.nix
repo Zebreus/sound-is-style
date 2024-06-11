@@ -12,7 +12,7 @@
       name = "Package name";
       shell = { pkgs }:
         pkgs.mkShell {
-          buildInputs = with pkgs; [ nodejs yarn ];
+          buildInputs = with pkgs; [ nodejs yarn boost gcc ];
           shellHook = ''
             export PATH="$(pwd)/node_modules/.bin:$PATH"
           '';

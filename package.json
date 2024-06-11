@@ -58,7 +58,9 @@
     "start:build": "next start",
     "getEnv": "vercel env pull .env",
     "deploy:rules": "firebase deploy --only firestore,storage",
-    "emulators": "yarn --cwd functions build ; firebase emulators:start --only firestore,functions,storage"
+    "emulators": "yarn --cwd functions build ; firebase emulators:start --only firestore,functions,storage",
+    "getUrls": " ./fuego --credentials sound-is-style-key.json query  --limit 5000  outfits > allOutfits.json && cat allOutfits.json | jq 'map(.Data.images) | flatten(1) | .[]' > urls.txt",
+    "downloadImages": "cat urls.txt | xargs -n 1 -P 8 wget -P images/"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
